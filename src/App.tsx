@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { JSX, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Github, Linkedin, ArrowUpRight, Moon, Sun, ExternalLink } from "lucide-react";
 
@@ -44,7 +44,7 @@ type SectionProps = {
 const Section: React.FC<SectionProps> = ({ id, title, children, kicker }) => (
   <section id={id} className="scroll-mt-24">
     <div className="mx-auto max-w-6xl px-4 md:px-6">
-      <div className="mb-10 md:mb-12 flex items-end justify-between gap-4">
+      <div className="mb-2 md:mb-3 flex items-end justify-between gap-4">
         <div>
           {kicker && (
             <div className="mb-1 text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400">{kicker}</div>
@@ -129,14 +129,13 @@ export default function App(): JSX.Element {
         </div>
       </header>
 
-      {/* spacing between sections */}
-      <main className="space-y-16 md:space-y-24">
+      {/* even tighter vertical spacing between sections */}
+      <main className="space-y-5 md:space-y-8">
         <Section id="home">
-          <div className="mx-auto max-w-6xl px-4 md:px-6 pt-10 md:pt-16 pb-4">
+          <div className="mx-auto max-w-6xl px-4 md:px-6 pt-6 md:pt-10 pb-2">
             <div className="grid gap-8 md:grid-cols-[1.2fr,0.8fr] items-center">
               <div>
                 <div className="mb-3 flex flex-wrap gap-2">
-                  <Pill>Open to senior/mid roles</Pill>
                   <Pill>Remote · EU</Pill>
                   <Pill>Backend · Full-stack</Pill>
                 </div>
@@ -146,12 +145,12 @@ export default function App(): JSX.Element {
                   transition={{ duration: 0.5 }}
                   className="text-3xl md:text-5xl font-semibold leading-tight"
                 >
-                  Building reliable platforms with Ruby on Rails, Python, and solid delivery.
+                  Building reliable platforms with Rails, Django and solid delivery
                 </MotionH1>
-                <p className="mt-4 max-w-2xl text-zinc-600 dark:text-zinc-300">
+                <p className="mt-3 max-w-2xl text-zinc-600 dark:text-zinc-300">
                   15+ years across backend and cloud. Modernizing systems, improving performance, and shipping features that stick.
                 </p>
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-4 flex flex-wrap gap-3">
                   <a
                     href="#crysto"
                     className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-4 py-2 text-sm font-medium"
@@ -174,7 +173,7 @@ export default function App(): JSX.Element {
                     <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
                       Rails upgrades, test coverage, Docker/CI reliability, and migration plans with zero downtime.
                     </p>
-                    <div className="mt-4 flex flex-wrap gap-2">
+                    <div className="mt-3 flex flex-wrap gap-2">
                       {["Rails 5–7", "PostgreSQL", "Sidekiq", "Redis", "Docker", "AWS"].map((t) => (
                         <Pill key={t}>{t}</Pill>
                       ))}
@@ -187,7 +186,7 @@ export default function App(): JSX.Element {
         </Section>
 
         <Section id="about" title="About">
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2">
             <Card>
               <div className="p-5">
                 <h3 className="text-base font-semibold">Who I am</h3>
@@ -335,7 +334,7 @@ export default function App(): JSX.Element {
           </div>
         </Section>
 
-        {/* ---- CRYSTO (replaces Projects) ---- */}
+        {/* ---- CRYSTO ---- */}
         <Section id="crysto" title="Crysto">
           <div className="grid gap-4 md:grid-cols-2">
             <Card>
@@ -352,7 +351,7 @@ export default function App(): JSX.Element {
                     Contact <ExternalLink className="h-4 w-4" />
                   </a>
                 </div>
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-3 flex flex-wrap gap-2">
                   {["Rails", "React", "TypeScript", "Tailwind v4", "PostgreSQL", "Docker", "AWS"].map((t) => (
                     <Pill key={t}>{t}</Pill>
                   ))}
@@ -375,7 +374,7 @@ export default function App(): JSX.Element {
             <Card>
               <div className="p-5">
                 <h3 className="font-medium">Brand Tokens</h3>
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-2 flex flex-wrap gap-2">
                   {["#111827", "#0ea5e9", "#a78bfa", "#22c55e"].map((c) => (
                     <span
                       key={c}
@@ -386,7 +385,7 @@ export default function App(): JSX.Element {
                     </span>
                   ))}
                 </div>
-                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-300">Easily swap these to match employer or product palettes.</p>
+                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Easily swap these to match employer or product palettes.</p>
               </div>
             </Card>
 
@@ -405,7 +404,7 @@ export default function App(): JSX.Element {
         <Section id="skills" title="Skills">
           <Card>
             <div className="p-5">
-              <div className="grid gap-6 md:grid-cols-3">
+              <div className="grid gap-5 md:grid-cols-3">
                 <div>
                   <h4 className="font-medium">Frontend</h4>
                   <ul className="mt-2 space-y-1 text-sm text-zinc-600 dark:text-zinc-300">
@@ -437,12 +436,12 @@ export default function App(): JSX.Element {
         <Section id="contact" title="Contact">
           <Card>
             <div className="p-5">
-              <div className="grid gap-6 md:grid-cols-[1fr,0.6fr] items-start">
+              <div className="grid gap-5 md:grid-cols-[1fr,0.6fr] items-start">
                 <div>
                   <p className="text-sm text-zinc-600 dark:text-zinc-300">
                     Based in Chișinău. Open to remote across EU. Romanian, English, Russian.
                   </p>
-                  <div className="mt-4 flex flex-wrap gap-3">
+                  <div className="mt-3 flex flex-wrap gap-3">
                     <a
                       href="mailto:hello@wyodeb.io"
                       className="inline-flex items-center gap-2 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-4 py-2 text-sm font-medium"
@@ -467,7 +466,7 @@ export default function App(): JSX.Element {
                     </a>
                   </div>
                 </div>
-                <form className="grid gap-3">
+                <form className="grid gap-2.5">
                   <input
                     className="rounded-xl border border-zinc-300 dark:border-zinc-700 bg-transparent px-3 py-2 text-sm"
                     placeholder="Your name"
@@ -494,7 +493,7 @@ export default function App(): JSX.Element {
 
       <footer className="py-10">
         <div className="mx-auto max-w-6xl px-4 md:px-6 text-sm text-zinc-500 dark:text-zinc-400">
-          © {new Date().getFullYear()} Sergiu Beșliu. All rights reserved.
+          © {new Date().getFullYear()} Sergiu Beșliu. All rights reserved
         </div>
       </footer>
 
