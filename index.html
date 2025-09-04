@@ -1,15 +1,26 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <link href="/public/favicon-light.svg" media="(prefers-color-scheme: light)" rel="icon" type="image/svg+xml">
-    <link href="/public/favicon-dark.svg" media="(prefers-color-scheme: dark)" rel="icon" type="image/svg+xml">
+  <meta charset="UTF-8"/>
+  <link href="/favicon-light.svg" media="(prefers-color-scheme: light)" rel="icon" type="image/svg+xml">
+  <link href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" rel="icon" type="image/svg+xml">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Sergiu Beșliu</title>
 
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Sergiu Beșliu</title>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var shouldDark = saved ? saved === "dark" : prefersDark;
+        if (shouldDark) document.documentElement.classList.add("dark");
+        else document.documentElement.classList.remove("dark");
+      } catch (_) {}
+    })();
+  </script>
 </head>
 <body>
-<div id="root"></div>
-<script src="/src/main.tsx" type="module"></script>
+  <div id="root"></div>
+  <script src="/src/main.tsx" type="module"></script>
 </body>
 </html>
