@@ -184,13 +184,6 @@ export default function App(): JSX.Element {
 
           <div className="flex items-center gap-2">
             <a
-              href="mailto:hello@wyodeb.io"
-              className="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900/60 transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
-            <a
               href="https://github.com/wyodeb"
               target="_blank"
               rel="noreferrer"
