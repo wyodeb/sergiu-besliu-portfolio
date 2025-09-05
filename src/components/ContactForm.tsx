@@ -24,7 +24,7 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus(null);
     if (!name.trim() || !email.trim() || !message.trim()) {
-      setStatus({ type: 'error', msg: 'Please fill in all fields.' });
+      setStatus({ type: 'error', msg: 'Please fill in all fields' });
       return;
     }
 
@@ -37,7 +37,7 @@ export default function ContactForm() {
         company,
       });
 
-      setStatus({ type: 'ok', msg: 'Thanks! Your message has been sent.' });
+      setStatus({ type: 'ok', msg: 'Thanks! Your message has been sent' });
       setName('');
       setEmail('');
       setMessage('');

@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+/* ---------- Base ---------- */
+@layer base {
+  /* Body / text */
+  html { @apply bg-white text-zinc-900; }
+  html.dark { @apply bg-zinc-950 text-zinc-200; } /* softer than pure white */
+
+  /* Links: not screaming white in dark */
+  a { @apply text-zinc-900 underline-offset-4 hover:underline; }
+  html.dark a { @apply text-zinc-100; }
+
+  /* Text selection */
+  ::selection { @apply bg-zinc-900 text-white; }
+  html.dark ::selection { @apply bg-zinc-200 text-zinc-900; }
+
+  /* Forms */
+  input, textarea, select {
+    @apply bg-white text-zinc-900 placeholder-zinc-500 border border-zinc-200 rounded-lg;
+  }
+  html.dark input, html.dark textarea, html.dark select {
+    @apply bg-zinc-900 text-zinc-100 placeholder-zinc-400 border border-zinc-800;
+  }
+
+  button { @apply outline-none; }
+
+  /* Focus ring – thinner and quieter on dark */
+  :focus-visible { @apply outline-none ring-2 ring-zinc-300 ring-offset-0; }
+  html.dark :focus-visible { @apply ring-2 ring-zinc-700 ring-offset-0; }
+}
+
+/* ---------- Utilities ---------- */
+@layer utilities {
+  /* Optional: tame scrollbars */
+  .scrollbar-thin { scrollbar-width: thin; }
+  .scrollbar-thumb { scrollbar-color: theme(colors.zinc.400) transparent; }
+  .dark .scrollbar-thumb { scrollbar-color: theme(colors.zinc.700) transparent; }
+}
+
+/* WebKit scrollbars */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: rgb(161 161 170); border-radius: 9999px; }
+html.dark *::-webkit-scrollbar-thumb { background: rgb(63 63 70); } /* zinc-700 */

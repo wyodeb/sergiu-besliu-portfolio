@@ -1,11 +1,9 @@
-import './_env.mjs'
+import './_env.mjs';
 import { Resend } from 'resend';
-import { createRequire } from 'node:module';
-const require = createRequire(import.meta.url);
-const { z } = require('zod');
+import { z } from 'zod';
 
 function escapeHtml(input) {
-  return String(input)
+  return String(input ?? '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
@@ -13,14 +11,14 @@ function escapeHtml(input) {
     .replace(/'/g, '&#039;');
 }
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL
-const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL;
+const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
 
 const ContactSchema = z.object({
   name: z.string().min(1).max(200),
   email: z.string().email().max(320),
   message: z.string().min(1).max(5000),
-  company: z.string().optional()
+  company: z.string().optional(),
 });
 
 export default async function handler(req, res) {
@@ -31,10 +29,27 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'Server not configured: RESEND_API_KEY missing' });
+  if (!TO_EMAIL || !FROM_EMAIL) {
+    return res.status(500).json({ error: 'Server not configured: CONTACT_TO_EMAIL or CONTACT_FROM_EMAIL missing' });
+  }
 
   try {
-    const parsed = ContactSchema.safeParse(req.body);
+    const body =
+      typeof req.body === 'string'
+        ? JSON.parse(req.body || '{}')
+        : (req.body ?? {});
+
+    const parsed = ContactSchema.safeParse(body);
     if (!parsed.success) {
+      const emailIssue = parsed.error.issues.find(i => i.path?.[0] === 'email');
+      if (emailIssue) {
+        return res.status(422).json({
+          error: 'Invalid email format',
+          code: 'invalid_email',
+          field: 'email',
+          details: emailIssue.message,
+        });
+      }
       return res.status(400).json({ error: 'Invalid payload', details: parsed.error.flatten() });
     }
 
